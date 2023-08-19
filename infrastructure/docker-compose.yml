@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+    webscraper-dev:
+      build:
+        context: ../
+        target: Development
+      volumes:
+        - ${PWD}:/app
+      image: webscraper-dev
+      container_name: webscraper-dev
+      networks:
+        - webscraper
+
+    webscraper:
+      build:
+        context: ../
+        target: Production
+      image: webscraper
+      container_name: webscraper
+      networks:
+          - webscraper
+
+networks:
+    webscraper:
+        name: webscraper
