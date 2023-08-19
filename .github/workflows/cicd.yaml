@@ -1,0 +1,27 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Starts app
+        run: |
+          make start
+      - name: Check format
+        run: |
+          make format
+      - name: Run tests
+        run: |
+          make test
+      - name: Stop app
+        run: |
+          make stop
