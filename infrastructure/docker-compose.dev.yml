@@ -4,12 +4,10 @@ services:
     webscraper:
       build:
         context: ../
-        target: Production
+        target: Development
+      volumes:
+        - ${PWD}:/app
       image: webscraper
       container_name: webscraper
       networks:
-          - webscraper
-
-networks:
-    webscraper:
-        name: webscraper
+        - webscraper
