@@ -17,8 +17,9 @@ test:
 	@${execute} bash -c "cd webscraper/ && go test -v"
 
 format:
-	@${execute} pre-commit run --files webscraper/* && \
+	@${execute} gofmt -w webscraper/ && \
+	${execute} goimports -w webscraper/ && \
 	${execute} bash -c "cd webscraper/ && golangci-lint run"
 
 shell:
-	@${docker-compose} exec -it webscraper-dev bash
+	@${docker-compose} exec -it webscraper bash
